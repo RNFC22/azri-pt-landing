@@ -344,6 +344,44 @@ a { color: inherit; }
 }
 
 /* ---------------------------------------------------
+   Testimonials
+--------------------------------------------------- */
+.testimonial-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.testimonial-card {
+  margin: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.testimonial-card__quote {
+  margin: 0 0 20px;
+}
+.testimonial-card__quote p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.testimonial-card__attribution {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-2);
+}
+.testimonial-card__attribution::before {
+  content: "\2014  ";
+}
+
+/* ---------------------------------------------------
    Availability / schedule
 --------------------------------------------------- */
 .availability { background: var(--surface); }
@@ -422,6 +460,11 @@ a { color: inherit; }
     align-items: start;
   }
   .photo-placeholder { margin: 0; }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 }
 
 @media (min-width: 900px) {
