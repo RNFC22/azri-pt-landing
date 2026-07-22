@@ -294,14 +294,16 @@ a { color: inherit; }
   gap: 48px;
 }
 
+/* Mobile default: circular avatar, stacked above the bio. Desktop swaps
+   this back to a rectangular portrait sitting beside the text — see the
+   720px breakpoint below. */
 .about__portrait {
   display: block;
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  aspect-ratio: 4 / 5;
+  width: 220px;
+  height: 220px;
+  aspect-ratio: 1 / 1;
   margin: 0 auto;
-  border-radius: var(--radius);
+  border-radius: 50%;
   background: var(--surface);
   object-fit: cover;
   object-position: center 20%;
@@ -491,7 +493,14 @@ a { color: inherit; }
   }
   .about__photo,
   .about__content { min-width: 0; }
-  .about__portrait { margin: 0; }
+  .about__portrait {
+    width: 100%;
+    height: auto;
+    max-width: 420px;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    border-radius: var(--radius);
+  }
 
   .testimonial-grid {
     grid-template-columns: 1fr 1fr;
