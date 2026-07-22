@@ -172,11 +172,12 @@ a { color: inherit; }
 
 /* ---------------------------------------------------
    Hero — flows with the page by default (cream, same
-   as everywhere else). Once a real training photo is
-   dropped in at assets/hero-bg.jpg, script.js confirms
-   it loaded and adds .hero--photo, which swaps in a
-   warm umber overlay (never neutral black) and lifts
-   the type to cream so it reads over the photo.
+   as everywhere else). Once real training photos are
+   dropped in at assets/hero-bg-1.jpg .. hero-bg-4.jpg,
+   script.js confirms each one loaded, crossfades
+   between whichever slides exist, and adds
+   .hero--photo, which brings in a warm umber overlay
+   (never neutral black) and lifts the type to cream.
 --------------------------------------------------- */
 .hero {
   position: relative;
@@ -191,24 +192,36 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("assets/hero-bg.jpg");
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.4s ease;
 }
+.hero__slide.is-active { opacity: 1; }
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  background-image: linear-gradient(180deg, rgba(var(--hero-tint), 0.42) 0%, rgba(var(--hero-tint), 0.56) 60%, rgba(var(--hero-tint), 0.68) 100%);
+  transition: opacity 0.3s ease;
+}
+.hero--photo .hero__overlay { opacity: 1; }
 
 .hero--photo {
   color: var(--paper);
 }
-.hero--photo .hero__bg {
-  background-image:
-    linear-gradient(180deg, rgba(var(--hero-tint), 0.42) 0%, rgba(var(--hero-tint), 0.56) 60%, rgba(var(--hero-tint), 0.68) 100%),
-    url("assets/hero-bg.jpg");
-}
 
 .hero__inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero .eyebrow { color: var(--accent); }
