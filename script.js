@@ -18,3 +18,13 @@ if (dividers.length && "IntersectionObserver" in window) {
 } else {
   dividers.forEach((el) => el.classList.add("is-visible"));
 }
+
+// The hero stays cream (matching the rest of the page) until a real
+// training photo exists at assets/hero-bg.jpg, then switches to the
+// dark-overlay photo treatment automatically.
+const hero = document.querySelector(".hero");
+if (hero) {
+  const probe = new Image();
+  probe.onload = () => hero.classList.add("hero--photo");
+  probe.src = "assets/hero-bg.jpg";
+}
