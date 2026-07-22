@@ -168,6 +168,7 @@ a { color: inherit; }
 
 .section {
   padding: 88px 0;
+  scroll-margin-top: 64px;
 }
 
 /* ---------------------------------------------------
@@ -295,14 +296,15 @@ a { color: inherit; }
 
 .about__portrait {
   display: block;
-  aspect-ratio: 3 / 4;
   width: 100%;
-  max-width: 340px;
+  max-width: 420px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   margin: 0 auto;
   border-radius: var(--radius);
   background: var(--surface);
   object-fit: cover;
-  object-position: center 25%;
+  object-position: center 20%;
 }
 
 .about__bio {
@@ -484,9 +486,11 @@ a { color: inherit; }
 --------------------------------------------------- */
 @media (min-width: 720px) {
   .about__grid {
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
     align-items: start;
   }
+  .about__photo,
+  .about__content { min-width: 0; }
   .about__portrait { margin: 0; }
 
   .testimonial-grid {
