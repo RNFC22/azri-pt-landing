@@ -1,23 +1,27 @@
 /* ---------------------------------------------------
    Azri PT — tokens
+   Light chalk/bone ground, near-black ink, one hot
+   flame accent. Dark hero/footer bands bookend a
+   light, editorial body — a training-poster system,
+   not an agency dashboard.
 --------------------------------------------------- */
 :root {
-  --bg: #14161a;
-  --surface: #1c1f24;
-  --surface-2: #23272d;
-  --border: #33373d;
-  --text: #f2f0ea;
-  --text-muted: #a6acb3;
-  --accent: #c97a3d;
-  --accent-strong: #e0925a;
-  --accent-2: #6e8b7a;
+  --bg: #f1ece1;
+  --surface: #e7ddc9;
+  --ink: #17140f;
+  --ink-muted: #6b6355;
+  --line: #d6cbb0;
+  --accent: #e8491d;
+  --accent-dark: #c23913;
+  --hero-tint: 20, 17, 13;
+  --paper: #f1ece1;
 
-  --font-display: "Bebas Neue", Impact, sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Anton", Impact, sans-serif;
+  --font-body: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --wrap: 1080px;
-  --radius: 4px;
+  --radius: 2px;
 }
 
 * { box-sizing: border-box; }
@@ -36,7 +40,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.55;
@@ -53,6 +57,8 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
   margin: 0;
 }
 
@@ -66,10 +72,10 @@ a { color: inherit; }
   left: -999px;
   top: 0;
   background: var(--accent);
-  color: #14161a;
+  color: var(--ink);
   padding: 12px 20px;
   z-index: 100;
-  font-weight: 600;
+  font-weight: 700;
 }
 .skip-link:focus {
   left: 16px;
@@ -77,7 +83,7 @@ a { color: inherit; }
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-strong);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -91,7 +97,7 @@ a { color: inherit; }
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
@@ -99,16 +105,16 @@ a { color: inherit; }
   border-radius: var(--radius);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 .btn:hover { transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 
 .btn--accent {
   background: var(--accent);
-  color: #16110b;
+  color: var(--ink);
 }
-.btn--accent:hover { background: var(--accent-strong); }
+.btn--accent:hover { background: var(--accent-dark); color: var(--paper); }
 
 .btn--small { padding: 9px 16px; font-size: 0.72rem; }
 .btn--large { padding: 17px 34px; font-size: 0.9rem; }
@@ -120,9 +126,9 @@ a { color: inherit; }
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(20, 22, 26, 0.85);
+  background: rgba(241, 236, 225, 0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 .topbar__inner {
   display: flex;
@@ -134,9 +140,9 @@ a { color: inherit; }
 .wordmark {
   font-family: var(--font-display);
   font-size: 1.6rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  color: var(--text);
+  color: var(--ink);
 }
 .wordmark span { color: var(--accent); }
 
@@ -148,7 +154,8 @@ a { color: inherit; }
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--accent-2);
+  font-weight: 700;
+  color: var(--accent);
   margin: 0 0 12px;
 }
 
@@ -162,13 +169,13 @@ a { color: inherit; }
 }
 
 /* ---------------------------------------------------
-   Hero
+   Hero — the one dark panel on the page
 --------------------------------------------------- */
 .hero {
   position: relative;
   overflow: hidden;
   padding: 110px 0 96px;
-  background: var(--bg);
+  background: var(--ink);
 }
 
 .hero__bg {
@@ -176,7 +183,7 @@ a { color: inherit; }
   inset: 0;
   z-index: 0;
   background-image:
-    linear-gradient(180deg, rgba(10, 11, 13, 0.5) 0%, rgba(10, 11, 13, 0.62) 60%, rgba(10, 11, 13, 0.72) 100%),
+    linear-gradient(180deg, rgba(var(--hero-tint), 0.5) 0%, rgba(var(--hero-tint), 0.62) 60%, rgba(var(--hero-tint), 0.72) 100%),
     url("assets/hero-bg.jpg");
   background-size: cover;
   background-position: center 30%;
@@ -188,10 +195,12 @@ a { color: inherit; }
   z-index: 1;
 }
 
+.hero .eyebrow { color: var(--accent); }
+
 .hero__title {
-  font-size: clamp(2.6rem, 9vw, 5rem);
-  line-height: 0.98;
-  color: var(--text);
+  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  line-height: 0.95;
+  color: var(--paper);
   margin-bottom: 20px;
 }
 
@@ -200,7 +209,8 @@ a { color: inherit; }
   font-family: var(--font-body);
   font-size: clamp(1rem, 2.6vw, 1.35rem);
   font-weight: 500;
-  color: var(--accent-2);
+  text-transform: none;
+  color: rgba(241, 236, 225, 0.78);
   letter-spacing: 0;
   margin-top: 10px;
 }
@@ -208,12 +218,13 @@ a { color: inherit; }
 .hero__subhead {
   max-width: 42ch;
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--text-muted);
+  color: rgba(241, 236, 225, 0.78);
   margin-bottom: 36px;
 }
 
 /* ---------------------------------------------------
-   Pulse divider (signature element)
+   Pulse divider (signature element) — a lane-marking
+   stitch line between sections, not a chart.
 --------------------------------------------------- */
 .pulse-divider {
   width: 100%;
@@ -256,7 +267,7 @@ a { color: inherit; }
   width: 100%;
   max-width: 340px;
   margin: 0 auto;
-  border: 1px dashed var(--border);
+  border: 1px dashed var(--line);
   border-radius: var(--radius);
   background: var(--surface);
   display: flex;
@@ -264,9 +275,9 @@ a { color: inherit; }
   align-items: center;
   justify-content: center;
   gap: 14px;
-  color: var(--text-muted);
+  color: var(--ink-muted);
 }
-.photo-placeholder__icon { opacity: 0.5; }
+.photo-placeholder__icon { opacity: 0.45; }
 .photo-placeholder__label {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -275,7 +286,7 @@ a { color: inherit; }
 }
 
 .about__bio {
-  color: var(--text-muted);
+  color: var(--ink-muted);
   font-size: 1.05rem;
   max-width: 56ch;
 }
@@ -283,79 +294,74 @@ a { color: inherit; }
 .credentials {
   margin: 32px 0 28px;
   padding-top: 24px;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--ink);
 }
 .credentials__title {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
+  color: var(--ink-muted);
   margin: 0 0 14px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .credentials__list li {
   position: relative;
   padding-left: 22px;
   margin-bottom: 10px;
   font-size: 0.98rem;
+  font-weight: 500;
 }
 .credentials__list li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 9px;
-  height: 2px;
+  top: 0.6em;
+  width: 10px;
+  height: 3px;
   background: var(--accent);
 }
 
 .achievement {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 22px 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
 }
-.achievement__badge {
-  flex: none;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  background: rgba(201, 122, 61, 0.1);
+.achievement__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--ink-muted);
+  margin: 0 0 8px;
 }
 .achievement__title {
-  margin: 0 0 2px;
-  font-weight: 600;
-  font-size: 0.98rem;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin: 0;
+  color: var(--ink);
 }
 .achievement__desc {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  margin: 4px 0 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 /* ---------------------------------------------------
-   Testimonials
+   Testimonials — editorial pull-quotes, not cards
 --------------------------------------------------- */
 .testimonial-grid {
   display: grid;
-  gap: 20px;
+  gap: 40px;
 }
 
 .testimonial-card {
   margin: 0;
-  padding: 28px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--accent);
-  border-radius: var(--radius);
+  padding-top: 24px;
+  border-top: 2px solid var(--ink);
 }
 
 .testimonial-card__quote {
@@ -363,17 +369,18 @@ a { color: inherit; }
 }
 .testimonial-card__quote p {
   margin: 0;
-  color: var(--text);
-  font-size: 1rem;
+  color: var(--ink);
+  font-size: 1.05rem;
   line-height: 1.7;
 }
 
 .testimonial-card__attribution {
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent-2);
+  color: var(--accent);
 }
 .testimonial-card__attribution::before {
   content: "\2014  ";
@@ -385,69 +392,72 @@ a { color: inherit; }
 .availability { background: var(--surface); }
 
 .schedule {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  font-family: var(--font-mono);
+  border-top: 2px solid var(--ink);
   max-width: 560px;
+  font-family: var(--font-mono);
 }
 .schedule__row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
 }
-.schedule__row:last-child { border-bottom: none; }
 .schedule__row--head {
-  background: var(--surface-2);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.72rem;
-  color: var(--text-muted);
-  padding: 12px 20px;
+  color: var(--ink-muted);
+  padding: 10px 0;
+  border-bottom-color: var(--ink);
 }
 .schedule__time {
-  color: var(--accent-2);
-  font-weight: 500;
+  color: var(--accent);
+  font-weight: 700;
 }
 .schedule__row--closed .schedule__time {
-  color: var(--text-muted);
+  color: var(--ink-muted);
 }
 
 /* ---------------------------------------------------
    Booking
 --------------------------------------------------- */
 .booking__intro {
-  color: var(--text-muted);
+  color: var(--ink-muted);
   max-width: 52ch;
   margin-bottom: 36px;
 }
 
 .calendly-inline-widget {
-  border: 1px solid var(--border);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
   overflow: hidden;
 }
 
 /* ---------------------------------------------------
-   Footer
+   Footer — the second dark band, bookending the hero
 --------------------------------------------------- */
 .footer {
-  border-top: 1px solid var(--border);
+  background: var(--ink);
+  border-top: 3px solid var(--accent);
   padding: 40px 0;
 }
 .footer__inner { text-align: center; }
-.wordmark--footer { font-size: 1.3rem; margin-bottom: 8px; }
+.footer .wordmark--footer {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--paper);
+}
+.footer .wordmark--footer span { color: var(--accent); }
 .footer__meta {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: rgba(241, 236, 225, 0.72);
   margin: 0 0 4px;
 }
-.footer__meta--muted { opacity: 0.7; }
+.footer__meta--muted { opacity: 0.65; }
 
 /* ---------------------------------------------------
    Breakpoints
