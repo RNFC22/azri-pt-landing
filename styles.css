@@ -397,6 +397,9 @@ a { color: inherit; }
   font-size: 1.05rem;
   line-height: 1.7;
 }
+.testimonial-card__quote p + p {
+  margin-top: 1em;
+}
 
 .testimonial-card__attribution {
   font-family: var(--font-mono);
