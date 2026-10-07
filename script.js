@@ -68,3 +68,62 @@ if (hero && slides.length) {
     }, 4500);
   }
 }
+
+// Testimonial carousel: arrow buttons, clickable dots, swipe on touch
+// devices, and left/right arrow keys when the carousel has focus.
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const viewport = carousel.querySelector("[data-viewport]");
+  const track = carousel.querySelector("[data-track]");
+  const slides = Array.from(track.children);
+  const dotsContainer = carousel.querySelector("[data-dots]");
+  const prevBtn = carousel.querySelector("[data-prev]");
+  const nextBtn = carousel.querySelector("[data-next]");
+  if (!track || slides.length < 2) return;
+
+  let current = 0;
+
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "testimonial-dot";
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", `Show testimonial ${i + 1}`);
+    dot.addEventListener("click", () => goTo(i));
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  function setHeight() {
+    viewport.style.height = `${slides[current].offsetHeight}px`;
+  }
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((dot, i) => dot.setAttribute("aria-selected", String(i === current)));
+    setHeight();
+  }
+
+  window.addEventListener("resize", setHeight);
+
+  prevBtn.addEventListener("click", () => goTo(current - 1));
+  nextBtn.addEventListener("click", () => goTo(current + 1));
+
+  carousel.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") goTo(current - 1);
+    if (e.key === "ArrowRight") goTo(current + 1);
+  });
+
+  let touchStartX = null;
+  viewport.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener("touchend", (e) => {
+    if (touchStartX === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(deltaX) > 40) goTo(deltaX < 0 ? current + 1 : current - 1);
+    touchStartX = null;
+  });
+
+  goTo(0);
+});
