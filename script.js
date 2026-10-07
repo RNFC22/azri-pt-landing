@@ -37,6 +37,9 @@ if (hero && slides.length) {
 
     probe.onload = () => {
       slide.style.backgroundImage = `url("${src}")`;
+      if (slide.dataset.position) {
+        slide.style.backgroundPosition = slide.dataset.position;
+      }
       if (loaded.length === 0) {
         slide.classList.add("is-active");
       }
